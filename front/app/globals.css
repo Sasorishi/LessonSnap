@@ -124,3 +124,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0; /* Pour éviter les marges par défaut */
+  padding: 0;
+}
+
+#_next {
+  height: 100%;
+}
