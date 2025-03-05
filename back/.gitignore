@@ -1,0 +1,28 @@
+# Ignorer l'environnement virtuel
+venv/
+
+# Ignorer les fichiers de cache Python
+__pycache__/
+*.pyc
+
+# Ignorer les fichiers de configuration de l'IDE
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer les fichiers de données temporaires
+*.tmp
+*.temp
+
+# Ignorer les fichiers de sauvegarde
+*.bak
+*.swp
+
+# Ignorer les fichiers de configuration spécifiques
+config/config.summarization.yaml
+
+# Ignorer les fichiers de modèle entraîné
+*.pth

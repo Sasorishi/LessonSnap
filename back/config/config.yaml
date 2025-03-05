@@ -1,0 +1,16 @@
+tokenizer_type: word
+embed_size: 128
+hidden_size: 256
+num_layers: 2
+rnn_type: LSTM
+learning_rate: 0.003
+num_epochs: 100
+batch_size: 32
+seq_length: 50
+dataset_name: "tiny_shakespeare"
+model_save_path: "model.pth"
+vocab_save_path: "vocab.pth"
+generation_length: 100
+start_text: "The"
+temperature: 0.8
+top_k: 10
