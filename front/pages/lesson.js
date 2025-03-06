@@ -117,7 +117,9 @@ const Lesson = () => {
           {summary ? (
             <Card className="w-7xl mx-auto">
               <CardHeader>
-                <CardTitle>Snap !</CardTitle>
+                <CardTitle className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+                  Snap !
+                </CardTitle>
                 <CardDescription className="tracking-normal">
                   Votre résumé est prêt ! 🎉 Voici une version concise de votre
                   texte
@@ -234,7 +236,6 @@ const Lesson = () => {
                   <Button
                     className="font-normal tracking-normal bg-primary hover:bg-white hover:text-black"
                     onClick={handleDemoSubmit}
-                    disabled={message !== "" || message === null}
                   >
                     Demo texte exemple
                     <svg
