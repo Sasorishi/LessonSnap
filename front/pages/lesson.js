@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
 import LoadingSpinner from "@/components/ui/spinner";
 import axios from "axios";
 
@@ -70,6 +79,17 @@ const Lesson = () => {
     }
   };
 
+  const handleReset = () => {
+    setSummary(null);
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(message)
+      .then(() => alert("Texte copié avec succès ! 📋"))
+      .catch((err) => console.error("Erreur lors de la copie :", err));
+  };
+
   return (
     <BackgroundBeamsWithCollision>
       <h2 className="text-2xl px-8 relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
@@ -78,34 +98,76 @@ const Lesson = () => {
           <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
             <span className="">Sur le chemin de la réussi.</span>
           </div>
-          <div className="mt-8 mb-8">
-            <Textarea
-              className="font-normal"
-              placeholder="Type your message here."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            {loading ? (
-              <LoadingSpinner />
-            ) : (
-              <div className="flex justify-center gap-4 mt-8">
+          {summary ? (
+            <Card className="w-95 mx-auto">
+              <CardHeader>
+                <CardTitle>Snap !</CardTitle>
+                <CardDescription className="tracking-normal">
+                  Votre résumé est prêt ! 🎉 Voici une version concise de votre
+                  texte
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form>
+                  <div className="grid w-full items-center gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <Label className="tracking-normal" htmlFor="name">
+                        Résumé
+                      </Label>
+                      <Textarea
+                        className="font-normal tracking-wide"
+                        value={summary}
+                      />
+                    </div>
+                  </div>
+                </form>
+              </CardContent>
+              <CardFooter className="flex justify-between">
                 <Button
-                  className="font-normal bg-primary hover:bg-white hover:text-black"
-                  onClick={handleDemoSubmit}
-                  disabled={message != ""}
+                  className="tracking-normal"
+                  variant="outline"
+                  onClick={handleReset}
                 >
-                  Demo texte exemple
+                  Effacer
                 </Button>
                 <Button
-                  className="font-normal bg-primary hover:bg-white hover:text-black"
-                  onClick={handleSubmit}
+                  className="tracking-normal"
+                  onClick={handleCopy}
+                  disabled={summary != ""}
                 >
-                  Valider
+                  Copier
                 </Button>
-              </div>
-            )}
-          </div>
-          {summary && <p>{summary}</p>}
+              </CardFooter>
+            </Card>
+          ) : (
+            <div className="mt-8 mb-8">
+              <Textarea
+                className="font-normal tracking-wide resize-none break-words"
+                placeholder="Type your message here."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              {loading ? (
+                <LoadingSpinner />
+              ) : (
+                <div className="flex justify-center gap-4 mt-8">
+                  <Button
+                    className="font-normal tracking-normal bg-primary hover:bg-white hover:text-black"
+                    onClick={handleDemoSubmit}
+                    disabled={message != ""}
+                  >
+                    Demo texte exemple
+                  </Button>
+                  <Button
+                    className="font-normal tracking-normal bg-primary hover:bg-white hover:text-black"
+                    onClick={handleSubmit}
+                  >
+                    Valider
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </h2>
     </BackgroundBeamsWithCollision>
