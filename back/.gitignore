@@ -26,3 +26,6 @@ config/config.summarization.yaml
 
 # Ignorer les fichiers de modèle entraîné
 *.pth
+
+# Ignorer les fichiers audio
+*.mp3

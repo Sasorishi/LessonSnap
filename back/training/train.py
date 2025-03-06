@@ -7,7 +7,6 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-
 from models.text_generation_model import TextGenerationModel
 from data.dataset_loader import load_wikitext_dataset
 from data.tokenizer import tokenize_text, build_vocab
@@ -18,7 +17,7 @@ def load_config(config_path='config/config.yaml'):
         config = yaml.safe_load(f)
     return config
 
-def main():
+def train_model():
     config = load_config()
     
     # Chargement et préparation des données
@@ -56,6 +55,8 @@ def main():
     # Sauvegarde du modèle et du vocabulaire
     torch.save(model.state_dict(), config["model_save_path"])
     torch.save({"stoi": stoi, "itos": itos}, config["vocab_save_path"])
+    
+    return {"message": "Training completed", "final_loss": loss.item()}
 
 if __name__ == '__main__':
-    main()
+    train_model()

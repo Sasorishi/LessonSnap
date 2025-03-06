@@ -2,3 +2,7 @@ torch
 datasets
 pyyaml
 numpy<2
+transformers
+flask
+flask-cors
+gtts
